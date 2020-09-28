@@ -52,6 +52,7 @@ export class Client {
     this.onerror = this.onerror.bind(this);
     this.ondecoded = this.ondecoded.bind(this);
 
+    // @ts-ignore
     this.decoder.on("decoded", this.ondecoded);
     this.conn.on("data", this.ondata);
     this.conn.on("error", this.onerror);
@@ -255,6 +256,7 @@ export class Client {
     this.conn.removeListener("data", this.ondata);
     this.conn.removeListener("error", this.onerror);
     this.conn.removeListener("close", this.onclose);
-    this.decoder.off("decoded", this.ondecoded);
+    // @ts-ignore
+    this.decoder.removeListener("decoded", this.ondecoded);
   }
 }
